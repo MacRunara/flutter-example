@@ -1,0 +1,62 @@
+# =============================================================================
+# Flutter CI — analyze + test + unsigned IPA + release APK on a Macrunara M4 node.
+#
+# Macrunara nodes ship with Flutter 3.47 stable, Xcode, Android SDK/NDK and
+# JDK preinstalled — no environment setup steps required.
+#
+# Runner label: keep exactly `runs-on: [macos, arm64, macrunara]`.
+# Labels the nodes don't report (self-hosted, macos-latest, ...) queue forever.
+# =============================================================================
+name: Flutter CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-flutter:
+    runs-on: [macos, arm64, macrunara]
+
+    steps:
+      # Step 1: Checkout
+      - uses: actions/checkout@v5
+
+      # Step 2 (optional): Macrunara setup action — brand banner + environment info.
+      # Uncomment after adding the MACRUNARA_INSTALLATION_ID repository secret.
+      # - uses: macrunara/setup-action@v1
+      #   with:
+      #     installation-id: ${{ secrets.MACRUNARA_INSTALLATION_ID }}
+      #     region: auto
+
+      # Step 3: Regenerate the native platform folders.
+      # This repo intentionally omits ios/ and android/ to stay small;
+      # `flutter create` rebuilds them locally without touching lib/ or pubspec.yaml.
+      # Delete this step once you commit your own ios/ and android/ folders.
+      - name: Scaffold native platforms
+        run: flutter create --platforms=ios,android --org com.macrunara.examples --project-name flutter_example .
+
+      # Step 4: Print environment info (helps troubleshooting)
+      - name: Show environment
+        run: |
+          echo "OS:   $(uname -s) $(uname -m)"
+          flutter --version
+
+      # Optional: pin a different Flutter version (nodes ship stable; usually not needed)
+      # - uses: subosito/flutter-action@v2
+      #   with:
+      #     flutter-version: '3.47.2'
+      #     channel: stable
+
+      # Step 5: Analyze + test + build + upload
+      # platform=all: analyze + test + ipa (unsigned) + apk;
+      # use ios or android for a single platform. Set run-tests: 'false' to skip.
+      - name: Flutter Build & Upload
+        uses: macrunara/build-actions/flutter@v1
+        with:
+          platform: all
+          build-mode: release
+          run-tests: 'true'
+          upload_artifact: true
+          artifact_name: flutter-build-products

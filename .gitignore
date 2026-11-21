@@ -1,0 +1,25 @@
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+.pub-cache/
+.pub/
+
+# Generated native scaffolding (created in CI via `flutter create`)
+# Commit these directories instead if you customize native code.
+ios/
+android/
+macos/
+windows/
+linux/
+web/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# macOS
+.DS_Store
