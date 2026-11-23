@@ -23,13 +23,6 @@ jobs:
       # Step 1: Checkout
       - uses: actions/checkout@v5
 
-      # Step 2 (optional): Macrunara setup action — brand banner + environment info.
-      # Uncomment after adding the MACRUNARA_INSTALLATION_ID repository secret.
-      # - uses: macrunara/setup-action@v1
-      #   with:
-      #     installation-id: ${{ secrets.MACRUNARA_INSTALLATION_ID }}
-      #     region: auto
-
       # Step 3: Regenerate the native platform folders.
       # This repo intentionally omits ios/ and android/ to stay small;
       # `flutter create` rebuilds them locally without touching lib/ or pubspec.yaml.
@@ -49,14 +42,30 @@ jobs:
       #     flutter-version: '3.47.2'
       #     channel: stable
 
-      # Step 5: Analyze + test + build + upload
-      # platform=all: analyze + test + ipa (unsigned) + apk;
-      # use ios or android for a single platform. Set run-tests: 'false' to skip.
-      - name: Flutter Build & Upload
-        uses: macrunara/build-actions/flutter@v1
+      # Step 5: Setup PATH + analyze + test + build + upload
+      # (pure run: commands; node tools are preinstalled, nothing to install)
+      - name: Setup PATH
+        run: |
+          echo "$HOME/flutter/bin" >> $GITHUB_PATH
+          echo "/usr/local/bin" >> $GITHUB_PATH
+
+      - name: Flutter Analyze & Test
+        run: |
+          flutter pub get
+          flutter analyze
+          flutter test
+
+      - name: Build IPA (unsigned) & APK
+        run: |
+          flutter build ipa --release --no-codesign
+          flutter build apk --release
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
         with:
-          platform: all
-          build-mode: release
-          run-tests: 'true'
+          name: flutter-build-products
+          path: |
+            build/ios/ipa/*.ipa
+            build/app/outputs/flutter-apk/app-release.apk
           upload_artifact: true
           artifact_name: flutter-build-products

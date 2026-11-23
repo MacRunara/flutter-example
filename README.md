@@ -21,7 +21,7 @@ A fork-and-run **Flutter** example: one Mac mini M4 runner builds both mobile pl
 
 - A minimal but real Flutter app (counter) with a widget test — `lib/`, `test/`, `pubspec.yaml`.
 - The `ios/` and `android/` platform folders are **regenerated in CI** (`flutter create --platforms=ios,android .`) so this repo stays tiny and version-drift-free. Commit them instead if you customize native code.
-- The heavy lifting uses the official [`macrunara/build-actions/flutter@v1`](https://github.com/macrunara/build-actions/tree/main/flutter) action: `pub get → analyze → test → ipa (unsigned) → apk`.
+- The pipeline is pure `run:` commands against the preinstalled Flutter toolchain: `pub get → analyze → test → ipa (unsigned) → apk`.
 
 ## Build times (measured on Macrunara M4)
 
@@ -42,5 +42,5 @@ Unsigned artifacts keep this example zero-secret. To ship, add your own signing 
 ## Links
 
 - [Macrunara Quickstart & workflow templates](https://github.com/macrunara/quickstart)
-- [macrunara/build-actions/flutter](https://github.com/macrunara/build-actions/tree/main/flutter)
+- [Macrunara quickstart templates](https://github.com/MacRunara/quickstart/tree/main/templates)
 - [macrunara.com](https://macrunara.com)

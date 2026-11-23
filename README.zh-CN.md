@@ -21,7 +21,7 @@
 
 - 最小但完整的 Flutter 计数器应用 + widget 测试(`lib/`、`test/`、`pubspec.yaml`);
 - `ios/`、`android/` 平台目录在 CI 里用 `flutter create --platforms=ios,android .` 现场生成,保持仓库精简;如需定制原生代码,把这两个目录提交进仓库即可;
-- 构建使用官方 [`macrunara/build-actions/flutter@v1`](https://github.com/macrunara/build-actions/tree/main/flutter):`pub get → analyze → test → ipa(未签名)→ apk`。
+- 流水线为纯 `run:` 命令,直接使用节点预装的 Flutter 工具链:`pub get → analyze → test → ipa(未签名)→ apk`。
 
 ## 构建时长(实测) <!-- TODO:发布前替换为真实数据 -->
 
@@ -39,5 +39,5 @@
 ## 链接
 
 - [Macrunara Quickstart 与模板库](https://github.com/macrunara/quickstart)
-- [macrunara/build-actions/flutter](https://github.com/macrunara/build-actions/tree/main/flutter)
+- [Macrunara quickstart 模板](https://github.com/MacRunara/quickstart/tree/main/templates)
 - [macrunara.com](https://macrunara.com)
