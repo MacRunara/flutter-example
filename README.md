@@ -1,13 +1,13 @@
-# flutter-example — Flutter iOS + Android CI on Macrunara M4
+# flutter-example — Flutter iOS + Android CI on Macrunara
 
 > ⚡ **[Install Macrunara](https://github.com/marketplace/macrunara)** → **[Fork](../../fork)** this repo → push to `main`: analyze + tests + **unsigned IPA and APK** finish in **~6 min** on Macrunara M4 runners.
 > 📊 **~6 min cold / ~4 min warm** for both platforms — measured on a Macrunara M4 (Mac mini) node. <!-- TODO: replace with the real numbers from the first live run before publishing -->
 
-[![Built on Macrunara M4](https://img.shields.io/badge/Built%20on-Macrunara%20M4-brightgreen)](https://macrunara.com)
+[![Built on Macrunara](https://img.shields.io/badge/Built%20on-Macrunara-brightgreen)](https://macrunara.com)
 
 English | [中文](README.zh-CN.md)
 
-A fork-and-run **Flutter** example: one Mac mini M4 runner builds both mobile platforms in a single job — `flutter analyze` → `flutter test` → unsigned **IPA** + release **APK**, uploaded as artifacts. Macrunara nodes ship with the Flutter SDK, Xcode, Android SDK/NDK and JDK preinstalled, so there is **zero environment setup**.
+A fork-and-run **Flutter** example: one Mac mini M4/M6 runner builds both mobile platforms in a single job — `flutter analyze` → `flutter test` → unsigned **IPA** + release **APK**, uploaded as artifacts. Macrunara nodes ship with the Flutter SDK, Xcode, Android SDK/NDK and JDK preinstalled, so there is **zero environment setup**.
 
 ## Fork & run in 3 minutes
 

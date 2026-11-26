@@ -1,13 +1,13 @@
-# flutter-example — Flutter 双端 CI(Macrunara M4)
+# flutter-example — Flutter 双端 CI(Macrunara)
 
 > ⚡ **[安装 Macrunara](https://github.com/marketplace/macrunara)** → **Fork** 本仓库 → 推送 `main`:analyze + 测试 + **未签名 IPA 和 APK** 全部在 **约 6 分钟**内完成。
 > 📊 双端合计 **冷构建约 6 分钟 / 有缓存约 4 分钟**,实测于 Macrunara M4(Mac mini)节点。<!-- TODO:发布前用首次真实运行数据替换 -->
 
-[![Built on Macrunara M4](https://img.shields.io/badge/Built%20on-Macrunara%20M4-brightgreen)](https://macrunara.com)
+[![Built on Macrunara](https://img.shields.io/badge/Built%20on-Macrunara-brightgreen)](https://macrunara.com)
 
 [English](README.md) | 中文
 
-一个可直接 fork 运行的 **Flutter** 示例:一台 Mac mini M4 runner 在一个 job 里构建双端 —— `flutter analyze` → `flutter test` → 未签名 **IPA** + release **APK**,产物自动上传。节点预装 Flutter SDK、Xcode、Android SDK/NDK、JDK,**零环境配置**。
+一个可直接 fork 运行的 **Flutter** 示例:一台 Mac mini M4/M6 runner 在一个 job 里构建双端 —— `flutter analyze` → `flutter test` → 未签名 **IPA** + release **APK**,产物自动上传。节点预装 Flutter SDK、Xcode、Android SDK/NDK、JDK,**零环境配置**。
 
 ## 三步跑起来
 
